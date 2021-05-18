@@ -18,13 +18,7 @@
  * @default true
  *
 */
-/*~struct~PositionObject:
- * @param x:num
- * @desc X position
- *
- * @param y:num
- * @desc Y Position
- * ex: {"x:num":"228","y:num":"661"}
+/*test message
  */
 var Imported = Imported || {};
 
