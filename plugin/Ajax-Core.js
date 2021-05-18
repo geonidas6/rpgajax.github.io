@@ -40,7 +40,7 @@ Imported.Ajax_Core.joueurFound = false;
 const  GET_REQUEST = "GET";
 const  POST_REQUEST = "POST";
 
-Imported.Ajax_Core.version = 1.1;
+Imported.Ajax_Core.version = 1.2;
 
 
 
