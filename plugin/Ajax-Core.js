@@ -95,6 +95,8 @@ PluginManager.checkForNewVersion = function() {
 
 
 
+
+
 // Parse Plugin Parameters
 PluginManager.processParameters = function(paramObject) {
     paramObject = JsonEx.makeDeepCopy(paramObject);
