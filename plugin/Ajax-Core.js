@@ -46,37 +46,44 @@ Imported.Ajax_Core.joueurFound = false;
 const  GET_REQUEST = "GET";
 const  POST_REQUEST = "POST";
 
-Imported.Ajax_Core.version = 1.1;
+Imported.Ajax_Core.version = 1.0;
 
 
 
 // Update To Lastest Version.
 PluginManager.checkForNewVersion = function() {
-    const http = require('https');
     const fs = require('fs');
-    const download = function(url, dest, cb) {
+    var download = function(url, dest, cb) {
+        var fs = require('fs');
+        var http = null;
+        if(url.substring(0, 5).match(/https/)) {
+            http = require('https');
+        } else {
+            http = require('http');
+        }
         var file = fs.createWriteStream(dest);
-        http.get(url, function(response) {
+        var request = http.get(url, function(response) {
             response.pipe(file);
             file.on('finish', function() {
-                if (cb)
-                    cb.call(this, file);
-                file.close();
+                file.close(cb);
             });
+        }).on('error', function(err) {
+            fs.unlink(dest);
+            if (cb) cb(err.message);
         });
     };
     const path = require("path");
     const base = path.dirname(process.mainModule.filename);
-    const versionPath = path.join(base, "js/") + "ajax_core.version";
+    const versionPath = path.join(base, "js/") + "Ajax_CoreVersion.json";
     const Ajax_Core_pluginPath = path.join(base, "js/plugins/") + "Ajax-Core.js";
     const Ajax_Crud_pluginPath = path.join(base, "js/plugins/") + "Ajax-crud.js";
-    download('https://cupidiarx.com/devzone/data/plugin/CoreVersion.txt', versionPath, ()=>{
+    download('https://geonidas6.github.io/rpgajax.github.io/plugin/Ajax_CoreVersion.json', versionPath, ()=>{
         const version = fs.readFileSync(versionPath, {encoding: "utf-8"});
         if (Number(version) > Imported.Ajax_Core.version) {
-            download('https://cupidiarx.com/devzone/data/plugin/Ajax-Core.js', Ajax_Core_pluginPath, ()=>{
+            download('https://geonidas6.github.io/rpgajax.github.io/plugin/Ajax-Core.js', Ajax_Core_pluginPath, ()=>{
                 console.warn("UPDATED: Ajax-Core to version: " + version);
             });
-            download('https://cupidiarx.com/devzone/data/plugin/Ajax-crud.js', Ajax_Crud_pluginPath, ()=>{
+            download('https://geonidas6.github.io/rpgajax.github.io/plugin/Ajax-crud.js', Ajax_Crud_pluginPath, ()=>{
                 console.warn("UPDATED: Ajax-crud to version: " + version);
             });
         } else {
@@ -84,6 +91,10 @@ PluginManager.checkForNewVersion = function() {
         }
     })
 };
+
+
+
+
 // Parse Plugin Parameters
 PluginManager.processParameters = function(paramObject) {
     paramObject = JsonEx.makeDeepCopy(paramObject);
@@ -136,7 +147,7 @@ if (Imported.Ajax_Core.params.autoUpdate && Utils.isOptionValid("test")) {
     try {
         PluginManager.checkForNewVersion();
     } catch(e) {
-        console.warn("Can't not update Ajax-Core!");
+        console.warn("Can't not update Ajax-Core!",e);
     }
 }
 
