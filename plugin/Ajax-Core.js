@@ -17,6 +17,11 @@
  * @type boolean
  * @default true
  *
+ * @arg joueur_api_url
+ * @text l'url
+ * @default https://cupidiarx.com/devzone/data/public/api/joueurs
+ * @desc veillez entrer l'url
+ *
 */
 /*test message
  */
@@ -27,6 +32,7 @@ Imported.Ajax_Core.Ajax_Data_Response = {};
 Imported.Ajax_Core.table = '';
 Imported.Ajax_Core.url = "https://cupidiarx.com/devzone/data/public/api/joueurs";
 Imported.Ajax_Core.base_url = "https://cupidiarx.com/devzone/data/public/api/joueurs";
+
 Imported.Ajax_Core.command = '';
 Imported.Ajax_Core.data = {};
 Imported.Ajax_Core.methode = 'GET';
@@ -41,6 +47,11 @@ const  GET_REQUEST = "GET";
 const  POST_REQUEST = "POST";
 
 Imported.Ajax_Core.version = 1.3;
+
+Imported.Ajax_Core.params = PluginManager.processParameters(PluginManager.parameters('Ajax-Core'));
+Imported.Ajax_Core.params.autoUpdate = Imported.Ajax_Core.params.autoUpdate || true;
+Imported.Ajax_Core.url = Imported.Ajax_Core.params.joueur_api_url || Imported.Ajax_Core.url;
+Imported.Ajax_Core.base_url = Imported.Ajax_Core.params.joueur_api_url || Imported.Ajax_Core.base_url;
 
 
 // Update To Lastest Version.
@@ -136,8 +147,7 @@ PluginManager.processParameters = function(paramObject) {
     return paramObject;
 };
 
-Imported.Ajax_Core.params = PluginManager.processParameters(PluginManager.parameters('Ajax-Core'));
-Imported.Ajax_Core.params.autoUpdate = Imported.Ajax_Core.params.autoUpdate || true;
+
 if (Imported.Ajax_Core.params.autoUpdate && Utils.isOptionValid("test")) {
     try {
         PluginManager.checkForNewVersion();
