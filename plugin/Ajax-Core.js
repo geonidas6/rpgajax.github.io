@@ -46,7 +46,7 @@ Imported.Ajax_Core.joueurFound = false;
 const  GET_REQUEST = "GET";
 const  POST_REQUEST = "POST";
 
-Imported.Ajax_Core.version = 1.3;
+Imported.Ajax_Core.version = 1.4;
 
 Imported.Ajax_Core.params = PluginManager.processParameters(PluginManager.parameters('Ajax-Core'));
 Imported.Ajax_Core.params.autoUpdate = Imported.Ajax_Core.params.autoUpdate || true;
