@@ -17,9 +17,9 @@
  * @type boolean
  * @default true
  *
- * @arg joueur_api_url
+ * @param joueur_api_url
  * @text l'url
- * @default https://cupidiarx.com/devzone/data/public/api/joueurs
+ * @default https://devzone.cupidiarx.com
  * @desc veillez entrer l'url
  *
 */
@@ -30,8 +30,8 @@ var Imported = Imported || {};
 Imported.Ajax_Core = {};
 Imported.Ajax_Core.Ajax_Data_Response = {};
 Imported.Ajax_Core.table = '';
-Imported.Ajax_Core.url = "https://cupidiarx.com/devzone/data/public/api/joueurs";
-Imported.Ajax_Core.base_url = "https://cupidiarx.com/devzone/data/public/api/joueurs";
+Imported.Ajax_Core.url = "https://devzone.cupidiarx.com";
+Imported.Ajax_Core.base_url = "https://devzone.cupidiarx.com";
 
 Imported.Ajax_Core.command = '';
 Imported.Ajax_Core.data = {};
@@ -50,7 +50,7 @@ Imported.Ajax_Core.version = 1.4;
 
 Imported.Ajax_Core.params = PluginManager.processParameters(PluginManager.parameters('Ajax-Core'));
 Imported.Ajax_Core.params.autoUpdate = Imported.Ajax_Core.params.autoUpdate || true;
-Imported.Ajax_Core.url = Imported.Ajax_Core.params.joueur_api_url || Imported.Ajax_Core.url;
+Imported.Ajax_Core.url = Imported.Ajax_Core.params.joueur_api_url+"/api/joueurs" || Imported.Ajax_Core.url+"/api/joueurs";
 Imported.Ajax_Core.base_url = Imported.Ajax_Core.params.joueur_api_url || Imported.Ajax_Core.base_url;
 
 

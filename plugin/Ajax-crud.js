@@ -161,7 +161,7 @@ start = true;
         Imported.Ajax_Core.Ajax_Data_Response = {};
         Imported.Ajax_Core.command = 'Save';
         Imported.Ajax_Core.methode = 'POST';
-        Imported.Ajax_Core.url = args.base_url ;
+        Imported.Ajax_Core.url =Imported.Ajax_Core.params.base_url+args.base_url ;
         var listchamps = $gameVariables.value(args.listchamps)
 
         //Array test
@@ -178,7 +178,7 @@ start = true;
         Imported.Ajax_Core.Ajax_Data_Response['datecreation'] = Imported.Ajax_Core.nowDate();
         Imported.Ajax_Core.data = Imported.Ajax_Core.Ajax_Data_Response;
 
-        if (args.base_url === Imported.Ajax_Core.base_url){
+        if (args.base_url === '/api/joueurs/'){
             //verifi si c'est url d'enregistrement du joueur
             if (   Imported.Ajax_Core.joueurFound === false){
                 //verifier si le joueur à déja été trouver si non okay
@@ -188,10 +188,10 @@ start = true;
 				var url_parm = Object.keys(  Imported.Ajax_Core.Ajax_Data_Response).map(function(key) {
 					return key + '=' +   Imported.Ajax_Core.Ajax_Data_Response[key];
 				}).join('&');
-				Imported.Ajax_Core.url = args.base_url+'?'+url_parm ;
+				Imported.Ajax_Core.url = Imported.Ajax_Core.params.base_url+args.base_url+'?'+url_parm ;
 				Imported.Ajax_Core.sendAjaxCrud()
 				Imported.Ajax_Core.joueurID =  Imported.Ajax_Core.Ajax_Data_Response[0].id;
-				
+
             }
         }else {
             //si le jouneur n'a pas encore été trouver on linitialise
@@ -225,16 +225,16 @@ start = true;
         var url_parm = Object.keys(  Imported.Ajax_Core.Ajax_Data_Response).map(function(key) {
             return key + '=' +   Imported.Ajax_Core.Ajax_Data_Response[key];
         }).join('&');
-        Imported.Ajax_Core.url = args.base_url+'?'+url_parm ;
+        Imported.Ajax_Core.url = Imported.Ajax_Core.params.base_url+args.base_url+'?'+url_parm ;
         Imported.Ajax_Core.data = {};
-         console.log('gets data --->', args.base_url,url_parm )
+         console.log('gets data --->', Imported.Ajax_Core.params.base_url+args.base_url,url_parm )
 
         Imported.Ajax_Core.sendAjaxCrud()
         var resultat = Imported.Ajax_Core.Ajax_Data_Response
         resultat = resultat[Number(Imported.Ajax_Core.Ajax_Data_Response.length)-1]
         var i = 0;
         for (const property in resultat) {
-            if (args.base_url === Imported.Ajax_Core.base_url){// quand c'est un appel vers joueur on recuperer l'id du joueur
+            if (args.base_url === "/api/joueurs/"){// quand c'est un appel vers joueur on recuperer l'id du joueur
                 if (property === 'id' && Imported.Ajax_Core.joueurFound === false){
                     Imported.Ajax_Core.joueurFound = true;
                     Imported.Ajax_Core.joueurID = resultat[property];
