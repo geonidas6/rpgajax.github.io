@@ -232,7 +232,6 @@ Imported.Ajax_Core.sendAjax = function () {
     });
 }
 
-
 Imported.Ajax_Core.sendAjaxCrud = function () {
 
     $.ajax({
