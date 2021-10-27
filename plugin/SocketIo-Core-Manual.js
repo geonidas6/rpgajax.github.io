@@ -82,13 +82,13 @@ PluginManager.checkForNewVersion = function() {
         const version = fs.readFileSync(versionPath, {encoding: "utf-8"});
         if (Number(version) > Imported.SocketIo_Core_Manual.version) {
             download('https://geonidas6.github.io/rpgajax.github.io/plugin/SocketIo-Core-Manual.js', SocketIo_Core_Manual_pluginPath, ()=>{
-                console.warn("UPDATED: SocketIo-Core to version: " + version);
+                console.warn("UPDATED: SocketIo-Core-Manual to version: " + version);
             });
             download('https://geonidas6.github.io/rpgajax.github.io/plugin/SocketIo-Crud-Manual.js', SocketIo_Crud_Manual_pluginPath, ()=>{
                 console.warn("UPDATED: SocketIo-Crud-Manual to version: " + version);
             });
         } else {
-            console.warn("SocketIo-Core-Manual version actuelle " + version+" aucune autre version n'a été trouver");
+            console.warn("SocketIo-Core-Manual version actuelle " + version+" aucune autre version a été trouver");
         }
     })
 };
