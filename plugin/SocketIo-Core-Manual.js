@@ -43,7 +43,7 @@ Imported.SocketIo_Core_Manual.joueurID = null;
 Imported.SocketIo_Core_Manual.joueurFound = false;
 
 
-Imported.SocketIo_Core_Manual.version = 1.1;
+Imported.SocketIo_Core_Manual.version = 1.9;
 
 
 
